@@ -1,0 +1,25 @@
+---
+- hosts: linux09
+  become: true
+  tasks:
+  - name: instalamos apache
+    package:
+      name: httpd
+      state: present
+  - name: iniciamos httpd y lo dejamos persistente al reinicio.
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  - name: creamos pagina de bienvenida
+    copy:
+      dest: /var/www/html/index.html
+      content: | 
+          <html>
+          <body>
+          <h1>It works!</h1>
+          Que Bonito!
+          Que bonito!
+          que bOnitO!
+          </body>
+          </html>

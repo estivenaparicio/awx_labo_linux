@@ -1,0 +1,23 @@
+---
+- hosts: "{{ servidores }}"
+  become: true
+  gather_facts: false
+  tasks:
+  - name: validamos conexion web
+    block:
+      - name: comprobamos si la web responde
+        uri:
+          url: "http://localhost"
+    rescue:
+      - name: servicio apache esta parado, por lo tanto lo levanto
+        service:
+          - name: httpd
+          - state: started
+    always:
+      - Name: mostrar mensaje
+        debug:
+          msg: "mensaje always"
+    # ignore_errors: true
+  # - name: mostrar mensaje
+  #  debug:
+  #    msg: "la tarea anterior ha ido chachi"

@@ -1,0 +1,7 @@
+---
+- hosts: "{{ servidores }}"
+  become: true
+  tasks:
+  - name: copiamos fichero configuracion
+    copy: 
+      src: /tools/git_repositories/awx_labo_linux/

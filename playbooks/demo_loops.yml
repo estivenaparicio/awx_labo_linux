@@ -1,0 +1,16 @@
+---
+- hosts: "{{ servidores }}" #variable para limitar los hosts
+  become: true
+  tasks:
+  - name: crear un usuario
+    user:
+     name: "{{ item.usuario }}"
+     groups: "{{ item.equipo }}"
+     shell: "/bin/bash"
+     comment: "usuario creado por Ansible"
+     state: present
+    with_items:
+    - { usuario: 'Roberto', equipo: 'adm' }
+    - { usuario: 'Alfonso', equipo: 'wheel' }
+    - { usuario: 'Cristina', equipo: 'wheel' }
+    - { usuario: 'Zoe', equipo: 'tsysadm' }

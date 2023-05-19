@@ -1,0 +1,9 @@
+---
+- hosts: "{{ servidores }}"
+  vars: 
+    nombre: joan
+  tasks:
+  - name: mostramos contenido de variable
+    debug:
+      msg:
+      - "nombre: {{ nombre }}"
