@@ -3,4 +3,4 @@
 - name: reinicia httpd
   service:
     name: "{{ apache_service }}"
-    status: restart
+    status: restarted
